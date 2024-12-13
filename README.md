@@ -73,7 +73,7 @@ This might look a bit daunting, but don't worry. First, the bot listens for when
 
 All types are `public`, `semi-private`, and `private`. All layouts are `vertical` and `horizontal`.
 
-Great! Now let's check when the bot joins, and log it. Append this to your `connect` event:
+Great! Now let's check when the bot joins, and log it. Append this after your `connect` event:
 ```js
 socket.on("room joined", (data) => {
   console.log("Joined room!");
