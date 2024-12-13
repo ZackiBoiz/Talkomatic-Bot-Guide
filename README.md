@@ -81,3 +81,46 @@ socket.on("room joined", (data) => {
 });
 ```
 The server will return some data along when you join the room. We can use this to save user messages, votes, etc.
+
+### Sending Messages
+
+Awesome sauce! Now we have our bot in a room, but it isn't doing anything right now. It's just sitting there. After our bot joins the room, let's have it say the iconic phrase, "Hello, world!"
+
+There are four main message types: `full-replace`, `replace`, `delete`, and `add`. For bots it is easiest to just use `full-replace` as we don't need to calculate anything extra. Let's do that:
+
+```js
+socket.on("room joined", (data) => {
+  console.log("Joined room!");
+  console.log(data);
+  
+  socket.emit("chat update", {
+    diff: {
+      type: "full-replace",
+      text: "Hello, world!"
+    }
+  });
+});
+```
+This event sends a `chat update` request that basically tells the server to replace our entire chat box with "Hello, world!". Try it!
+
+Now that we know how to send messages, let's make a simple function that does that so we can reuse it easily. Define this at the bottom of your program:
+
+```js
+function sendMessage(text) {
+  socket.emit("chat update", {
+    diff: {
+      type: "full-replace",
+      text: text
+    }
+  });
+}
+```
+That also means we can replace the join message with:
+
+```js
+sendMessage("Hello, world!");
+```
+
+### Will continue the guide later!
+
+#### Bot guide created with :heart: by @xnor / ZackiBoiz
