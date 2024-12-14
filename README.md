@@ -46,7 +46,7 @@ socket.on("connect", async () => {
 ```
 You won't see your bot anywhere, but the bot has just connected to the lobby. When the bot connects to the socket, it will ask the server to join the lobby by setting its username and location. You can customize this!
 
-How about let's make the bot create a room and join it after it joins the lobby?
+How about let's make the bot join a room? Replace `000000` with your testing room ID.
 ```js
 socket.on("connect", async () => {
   console.log("Socket connected!");
@@ -56,24 +56,15 @@ socket.on("connect", async () => {
     location: "Somewhere"
   });
   
-  socket.once("room created", (room_id) => {
-    socket.emit("join room", {
-      roomId: room_id
-    });
-  });
-  socket.emit("create room", {
-    name: "Tutorial Room",
-    type: "public",
-    layout: "vertical"
+  socket.emit("join room", {
+    roomId: "000000"
   });
 });
 ```
 
-This might look a bit daunting, but don't worry. First, the bot listens for when the room is created, then joins the room with the room ID sent back by the server. Then it actually asks the server to create the room with the name, type, and layout. You may also add an optional `accessCode` parameter if your type is `semi-private`, but will have to have that same `accessCode` parameter when you join the room.
+Recap! This might look a bit daunting, but don't worry. First, the bot listens for when it connects to the socket, joins the lobby with its user info, then joins a room at a set room ID.
 
-All types are `public`, `semi-private`, and `private`. All layouts are `vertical` and `horizontal`.
-
-Great! Now let's check when the bot joins, and log it. Append this after your `connect` event:
+Great! Now let's check when the bot joins, and log it. Append this **after** your `connect` event:
 ```js
 socket.on("room joined", (data) => {
   console.log("Joined room!");
