@@ -2,6 +2,10 @@
 
 This guide will teach you how to create your own little bot in Talkomatic Classic and Talkomatic Modern!
 
+## Before You Start...
+
+Make sure you download the latest version of **[Node](https://nodejs.org/en/download)** and a good IDE. (My choice would go to **[VSCode](https://code.visualstudio.com/download)**)
+
 ## Talkomatic Classic Guide
 
 ### Getting Started
