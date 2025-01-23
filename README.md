@@ -22,7 +22,7 @@ We can start with requiring the module, and then connecting to Talkomatic Classi
 
 ```js
 const io = require("socket.io-client");
-const socket = io("https://open.talkomatic.co");
+const socket = io("https://classic.talkomatic.co");
 
 socket.on("connect", async () => {
   console.log("Socket connected!");
